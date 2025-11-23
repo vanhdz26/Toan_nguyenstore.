@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<section class="section-p1">
+    <h2>Đăng Nhập Quản Trị</h2>
+
+    <div class="login-box">
+        <input type="text" id="admin_email" placeholder="Email admin">
+        <input type="password" id="admin_pass" placeholder="Mật khẩu">
+        <button onclick="adminLogin()" class="normal">Đăng Nhập</button>
+    </div>
+</section>
+
+<script>
+function adminLogin() {
+    let email = document.getElementById("admin_email").value.trim();
+    let pass = document.getElementById("admin_pass").value.trim();
+
+    let users = JSON.parse(localStorage.getItem("USERS")) || [];
+    let admin = users.find(u => u.email === email && u.password === pass && u.role === "admin");
+
+    if (!admin) {
+        alert("Sai tài khoản admin!");
+        return;
+    }
+
+    // lưu user
+    localStorage.setItem("CURRENT_USER", JSON.stringify(admin));
+
+    alert("Đăng nhập admin thành công!");
+    window.location.href = "admin-dashboard.html";
+}
+</script>
+<script>
+    displayUserNavbar();
+</script>   
+<script>
+    requireAdmin();
+    displayUserNavbar();
+</script>
+
+
+</body>
+<script src="js/core-auth.js"></script>
+<script src="js/core-products.js"></script>
+<script src="js/core-cart.js"></script>
+<script src="js/core-orders.js"></script>
+<script src="js/core-ui.js"></script>
+<script src="js/shop.js"></script>
+
+</html>

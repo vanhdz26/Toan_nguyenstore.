@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body { text-align:center; padding:40px; }
+        .box {
+            width:350px;
+            margin:auto;
+            padding:20px;
+            background:#f5f5f5;
+            border-radius:10px;
+        }
+        input { width:100%; padding:10px; margin:8px 0; }
+        button { padding:10px; background:#088178; color:white; border:none; border-radius:5px; cursor:pointer; }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Admin Login</h2>
+
+    <input id="adm_email" placeholder="Email admin" type="text">
+    <input id="adm_pass" placeholder="Mật khẩu" type="password">
+
+    <button onclick="loginAdmin()">Đăng nhập</button>
+</div>
+
+<script>
+function loginAdmin() {
+    const email = document.getElementById("adm_email").value.trim();
+    const pass = document.getElementById("adm_pass").value.trim();
+
+    const db = JSON.parse(localStorage.getItem("USERS")) || [];
+    const adm = db.find(u => u.email === email && u.password === pass && u.role === "admin");
+
+    if (!adm) {
+        alert("Sai tài khoản hoặc bạn không phải ADMIN!");
+        return;
+    }
+
+    localStorage.setItem("CURRENT_USER", JSON.stringify(adm));
+    window.location.href = "admin-dashboard.html";
+}
+</script>
+
+</body>
+</html>

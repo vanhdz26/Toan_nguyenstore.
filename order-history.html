@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Sử Đơn Hàng - STORE VANH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<section id="header">
+    <a href="index.html"><img src="img/logo.png" class="logo"></a>
+
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li id="userArea"></li>
+            <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <li><a class="active" href="order-history.html">Lịch sử đơn</a></li>
+            <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+        </ul>
+    </div>
+
+    <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+    </div>
+</section>
+
+<!-- PAGE CONTENT -->
+<section class="section-p1">
+    <h2>Lịch sử đơn hàng</h2>
+    <div id="order-list"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="section-p1">
+    <div class="col">
+        <img class="logo" src="img/logo.png">
+        <h4>Thông Tin Liên Hệ</h4>
+        <p><strong>Địa chỉ:</strong> VietNam, Ha Dong</p>
+        <p><strong>SĐT:</strong> 0787146720</p>
+        <p><strong>Giờ:</strong> 08:00 - 18:00</p>
+    </div>
+
+    <div class="col">
+        <h4>Thông Tin</h4>
+        <a href="about.html">Về chúng tôi</a>
+        <a href="contact.html">Liên hệ</a>
+    </div>
+
+    <div class="col">
+        <h4>Tài khoản</h4>
+        <a href="login-user.html">Đăng nhập</a>
+        <a href="cart.html">Giỏ hàng</a>
+        <a href="order-history.html">Lịch sử đơn</a>
+    </div>
+</footer>
+
+<!-- JS CORE -->
+<script src="js/core-auth.js"></script>
+<script src="js/core-products.js"></script>
+<script src="js/core-cart.js"></script>
+<script src="js/core-orders.js"></script>
+<script src="js/core-ui.js"></script>
+
+<!-- AUTO RENDER ORDER HISTORY -->
+<script>
+window.addEventListener("load", () => {
+    renderOrderHistory();  // từ core-orders.js
+});
+</script>
+
+</body>
+</html>

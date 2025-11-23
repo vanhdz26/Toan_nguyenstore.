@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài khoản của tôi</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== PAGE LAYOUT ===== */
+        .profile-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: flex;
+            gap: 30px;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .profile-sidebar {
+            width: 260px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            padding: 20px;
+        }
+
+        .profile-sidebar h3 {
+            color: #088178;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .profile-sidebar a {
+            display: block;
+            padding: 12px 10px;
+            font-size: 15px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .profile-sidebar a:hover,
+        .profile-sidebar a.active {
+            background: #088178;
+            color: #fff;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .profile-main {
+            flex: 1;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        }
+
+        .profile-main h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .profile-main label {
+            font-weight: 600;
+            margin-top: 12px;
+            display: block;
+        }
+
+        .profile-main input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .save-btn {
+            margin-top: 20px;
+            padding: 12px 18px;
+            background: #088178;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<section id="header">
+    <a href="index.html"><img src="img/logo.png" class="logo"></a>
+
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li id="userArea"></li>
+            <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+        </ul>
+    </div>
+
+    <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+    </div>
+</section>
+
+<!-- =========================
+     PROFILE PAGE
+========================= -->
+<div class="profile-container">
+
+    <!-- SIDEBAR -->
+    <div class="profile-sidebar">
+        <h3>Tài khoản</h3>
+
+        <a href="user-profile.html" class="active">Thông tin cá nhân</a>
+        <a href="order-history.html">Lịch sử đơn hàng</a>
+        <a href="#" onclick="userLogout()" style="color:red;font-weight:bold;">Đăng xuất</a>
+    </div>
+
+    <!-- MAIN INFO -->
+    <div class="profile-main">
+        <h2>Thông tin cá nhân</h2>
+
+        <label>Họ và tên</label>
+        <input type="text" id="pf_name">
+
+        <label>Email</label>
+        <input type="text" id="pf_email" disabled>
+
+        <label>Số điện thoại</label>
+        <input type="text" id="pf_phone">
+
+        <label>Địa chỉ</label>
+        <input type="text" id="pf_address">
+
+        <button class="save-btn" onclick="saveProfile()">Lưu thay đổi</button>
+    </div>
+</div>
+
+<!-- JS -->
+<script src="js/core-auth.js"></script>
+<script src="js/core-ui.js"></script>
+
+<script>
+    // Load thông tin user
+    document.addEventListener("DOMContentLoaded", () => {
+        const user = getCurrentUser();
+        if (!user) {
+            window.location.href = "login-user.html";
+            return;
+        }
+
+        const db = JSON.parse(localStorage.getItem("USER_DB")) || [];
+        const full = db.find(u => u.id === user.id);
+
+        if (full) {
+            document.getElementById("pf_name").value = full.name;
+            document.getElementById("pf_email").value = full.email;
+            document.getElementById("pf_phone").value = full.phone;
+            document.getElementById("pf_address").value = full.address;
+        }
+
+        displayUserNavbar();
+    });
+
+    // Lưu thay đổi
+    function saveProfile() {
+        const user = getCurrentUser();
+        const db = JSON.parse(localStorage.getItem("USER_DB")) || [];
+
+        const idx = db.findIndex(u => u.id === user.id);
+        if (idx === -1) return;
+
+        db[idx].name = document.getElementById("pf_name").value;
+        db[idx].phone = document.getElementById("pf_phone").value;
+        db[idx].address = document.getElementById("pf_address").value;
+
+        localStorage.setItem("USER_DB", JSON.stringify(db));
+        alert("Cập nhật thành công!");
+    }
+</script>
+
+</body>
+</html>

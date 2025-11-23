@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="admin-page">
+
+    <!-- HEADER ADMIN -->
+    <section id="header">
+        <a href="admin-dashboard.html"><img src="img/logo.png" class="logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="admin-dashboard.html">Dashboard</a></li>
+                <li><a href="admin-products.html">Sản phẩm</a></li>
+                <li><a href="orders.html">Đơn hàng</a></li>
+
+                <li id="userArea"></li>
+
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- DASHBOARD WRAPPER -->
+    <div class="admin-wrapper">
+
+        <div class="admin-title">
+            <div>
+                <h2>📊 Admin Dashboard</h2>
+                <span>Quản lý tổng quan hệ thống bán hàng</span>
+            </div>
+        </div>
+
+        <div class="admin-stats">
+            <div class="admin-card">
+                <h3>Tổng sản phẩm</h3>
+                <h2 id="statProducts">0</h2>
+            </div>
+
+            <div class="admin-card">
+                <h3>Tổng đơn hàng</h3>
+                <h2 id="statOrders">0</h2>
+            </div>
+
+            <div class="admin-card">
+                <h3>Tổng khách hàng</h3>
+                <h2 id="statUsers">0</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS CORE -->
+    <script src="js/core-auth.js"></script>
+    <script src="js/core-products.js"></script>
+    <script src="js/core-cart.js"></script>
+    <script src="js/core-orders.js"></script>
+    <script src="js/core-ui.js"></script>
+
+    <!-- DASHBOARD JS -->
+    <script>
+        // Chỉ admin mới vào được
+        const user = getCurrentUser();
+        if (!user || user.role !== "admin") {
+            alert("Bạn không có quyền truy cập trang ADMIN!");
+            window.location.href = "index.html";
+        }
+
+        // Hiển thị admin trên navbar
+        displayUserNavbar();
+
+        // Cập nhật thống kê
+        function updateStats() {
+            document.getElementById("statProducts").innerText = getAllProducts().length;
+            document.getElementById("statOrders").innerText = getAllOrders().length;
+            document.getElementById("statUsers").innerText = getAllUsers().length;
+        }
+
+        updateStats();
+    </script>
+
+</body>
+</html>

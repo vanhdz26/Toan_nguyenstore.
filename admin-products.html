@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="section-p1 admin-page">
+
+    <!-- HEADER ADMIN -->
+    <section id="header">
+        <a href="admin-dashboard.html"><img src="img/logo.png" class="logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="admin-dashboard.html">Dashboard</a></li>
+                <li><a class="active" href="admin-products.html">Sản phẩm</a></li>
+                <li><a href="orders.html">Đơn hàng</a></li>
+
+                <li id="userArea"></li>
+
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+            </ul>
+        </div>
+
+        <div id="mobile">
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <div class="admin-wrapper">
+
+        <div class="admin-title">
+            <div>
+                <h2>🛠 Quản Lý Sản Phẩm</h2>
+                <span>Thêm, sửa, xóa sản phẩm trong hệ thống</span>
+            </div>
+        </div>
+
+        <div class="admin-container">
+
+            <!-- DANH SÁCH SẢN PHẨM -->
+            <div class="product-list admin-form">
+                <h3>Danh sách sản phẩm</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Giá</th>
+                            <th>Ảnh</th>
+                            <th>Xóa</th>
+                            <th>Sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminProductTable"></tbody>
+                </table>
+            </div>
+
+            <!-- FORM THÊM/SỬA -->
+            <div class="product-form admin-form">
+                <h3>Thêm / Sửa sản phẩm</h3>
+
+                <input type="text" id="p_name" placeholder="Tên sản phẩm">
+                <input type="text" id="p_brand" placeholder="Thương hiệu">
+                <input type="number" id="p_price" placeholder="Giá">
+                <input type="text" id="p_images" placeholder="Link ảnh (ngăn cách bằng dấu phẩy)">
+                <input type="text" id="p_category" placeholder="Danh mục: Áo / Quần / Giày">
+                <input type="text" id="p_description" placeholder="Mô tả">
+
+                <button class="btn-admin primary" id="saveProduct">Lưu sản phẩm</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JS CORE -->
+    <script src="js/core-auth.js"></script>
+    <script src="js/core-products.js"></script>
+    <script src="js/core-cart.js"></script>
+    <script src="js/core-orders.js"></script>
+    <script src="js/core-ui.js"></script>
+
+    <script>
+        // Bảo vệ ADMIN
+        const user = getCurrentUser();
+        if (!user || user.role !== "admin") {
+            alert("Bạn không có quyền truy cập trang này!");
+            window.location.href = "index.html";
+        }
+
+        // Navbar
+        displayUserNavbar();
+
+        // Render bảng sản phẩm
+        renderAdminProducts();
+
+        // Lưu sản phẩm
+        document.getElementById("saveProduct").onclick = () => {
+            addOrUpdateProduct();
+        };
+    </script>
+
+</body>
+</html>

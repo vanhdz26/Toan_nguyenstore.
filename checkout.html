@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .checkout-box {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 25px;
+            background: #f8f8f8;
+            border-radius: 12px;
+        }
+
+        .checkout-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        #order-summary {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+        }
+
+        #order-summary h3 {
+            margin-bottom: 10px;
+        }
+
+        /* ===== popup QR ===== */
+        .qr-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .qr-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            animation: zoomIn 0.25s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<section id="header">
+    <a href="index.html"><img src="img/logo.png" class="logo"></a>
+
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="cart.html">Giỏ</a></li>
+            <li><a class="active" href="checkout.html">Thanh toán</a></li>
+
+            <li id="userArea"></li>
+
+            <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+        </ul>
+    </div>
+
+    <div id="mobile">
+        <i id="bar" class="fas fa-outdent"></i>
+    </div>
+</section>
+
+<section class="checkout-box">
+
+    <h2>Thanh toán đơn hàng</h2>
+
+    <!-- Order Summary -->
+    <div id="order-summary">
+        <h3>Đơn hàng của bạn</h3>
+        <div id="summary-items"></div>
+        <p style="margin-top:10px;"><b>Tổng cộng: </b><span id="summary-total">0</span>$</p>
+    </div>
+
+    <!-- User info -->
+    <h3>Thông tin giao hàng</h3>
+    <input id="fullname" type="text" placeholder="Họ và tên">
+    <input id="phone" type="text" placeholder="Số điện thoại">
+    <input id="address" type="text" placeholder="Địa chỉ nhận hàng">
+
+    <h3 style="margin-top:20px;">Phương thức thanh toán</h3>
+
+    <!-- 🔥 Nút thanh toán DEMO -->
+    <button class="normal" id="payVNPay" style="margin-top:10px;">Thanh toán VNPay (DEMO)</button>
+    <button class="normal" id="payMomo" style="margin-top:10px; background:#a800ff; color:#fff;">Thanh toán Momo (DEMO)</button>
+
+</section>
+
+<!-- POPUP QR -->
+<div id="qrModal" class="qr-modal">
+    <div class="qr-box">
+        <h3 id="qrTitle"></h3>
+        <img id="qrImage" src="" style="width:260px;height:260px;border-radius:10px;">
+        <p>Vui lòng mở VNPay/Momo quét mã để thanh toán.</p>
+        <button class="normal" onclick="closeQR()">Đóng</button>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="section-p1" style="margin-top:50px;">
+    <div class="col">
+        <img class="logo" src="img/logo.png">
+        <h4>Liên hệ</h4>
+        <p><strong>Địa chỉ:</strong> Hà Đông, Hà Nội</p>
+        <p><strong>SĐT:</strong> 0787146720</p>
+    </div>
+</footer>
+
+<!-- JS CORE -->
+<script src="js/core-auth.js"></script>
+<script src="js/core-products.js"></script>
+<script src="js/core-cart.js"></script>
+<script src="js/core-orders.js"></script>
+<script src="js/core-ui.js"></script>
+
+<!-- Payment DEMO -->
+<script src="js/payment.js"></script>
+
+<script>
+    displayUserNavbar();
+</script>
+
+</body>
+</html>

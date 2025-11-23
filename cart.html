@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>STORE VANH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<section id="header">
+    <a href="index.html"><img src="img/logo.png" class="logo"></a>
+
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li id="userArea"></li>
+            <li><a class="active" href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+        </ul>
+    </div>
+
+    <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+    </div>
+</section>
+
+<!-- PAGE HEADER -->
+<section id="page-header" class="cart-header">
+    <h2>Giỏ Hàng</h2>
+    <p>Xem và chỉnh sửa sản phẩm của bạn</p>
+</section>
+
+<!-- CART TABLE -->
+<section id="cart" class="section-p1">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>Xóa</td>
+                <td>Ảnh</td>
+                <td>Sản phẩm</td>
+                <td>Giá</td>
+                <td>Số lượng</td>
+                <td>Tổng</td>
+            </tr>
+        </thead>
+
+        <tbody id="cart-items">
+            <!-- JS render -->
+        </tbody>
+    </table>
+
+    <div id="cart-total" style="text-align:right; margin-top:20px; font-size:20px;">
+        Tổng tiền: <span id="totalPrice">0</span>$
+    </div>
+</section>
+
+<!-- CART ADD -->
+<section id="cart-add" class="section-p1">
+    <div id="coupon">
+        <h3>Áp dụng khuyến mãi</h3>
+        <div>
+            <input type="text" placeholder="Nhập mã giảm giá">
+            <button class="normal">Áp dụng</button>
+        </div>
+    </div>
+
+    <div id="subtotal">
+        <h3>Tổng giỏ hàng</h3>
+        <table>
+            <tr>
+                <td>Tổng thu</td>
+                <td><span id="subtotalPrice">$0</span></td>
+            </tr>
+            <tr>
+                <td>Phí chuyển hàng</td>
+                <td>$0</td>
+            </tr>
+            <tr>
+                <td><strong>Tổng cộng</strong></td>
+                <td><strong><span id="grandTotal">$0</span></strong></td>
+            </tr>
+        </table>
+        <a href="checkout.html">
+            <button class="normal">Tiến hành thanh toán</button>
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="section-p1">
+    <div class="col">
+        <img class="logo" src="img/logo.png">
+        <h4>Thông Tin Liên Hệ</h4>
+        <p><strong>Địa chỉ:</strong> VietNam, Ha Dong</p>
+        <p><strong>Số điện thoại:</strong> 0787146720</p>
+        <p><strong>Giờ:</strong> 08:00-18:00</p>
+
+        <div class="follow">
+            <h4>Theo chúng tôi</h4>
+            <div class="icon">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-pinterest-p"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <h4>Liên Hệ</h4>
+        <a href="#">Về chúng tôi</a>
+        <a href="#">Thông tin giao hàng</a>
+        <a href="#">Chính sách bảo mật</a>
+        <a href="#">Điều khoản & Điều kiện</a>
+        <a href="#">Liên hệ</a>
+    </div>
+
+    <div class="col">
+        <h4>Tài khoản</h4>
+        <a href="login-user.html">Đăng nhập</a>
+        <a href="cart.html">Xem giỏ hàng</a>
+        <a href="#">Ưa thích</a>
+        <a href="order-history.html">Theo dõi đơn hàng</a>
+        <a href="#">Hỗ trợ</a>
+    </div>
+
+    <div class="col install">
+        <h4>Tải ứng dụng</h4>
+        <p>Tải từ App Store & Google Play</p>
+        <div class="row">
+            <img src="img/pay/app.jpg">
+            <img src="img/pay/play.jpg">
+        </div>
+        <p>Thanh toán an toàn</p>
+        <img src="img/pay/pay.png">
+    </div>
+</footer>
+
+<!-- JS CORE (DÙNG CHUNG) -->
+<script src="js/core-auth.js"></script>
+<script src="js/core-products.js"></script>
+<script src="js/core-cart.js"></script>
+<script src="js/core-orders.js"></script>
+<script src="js/core-ui.js"></script>
+
+<!-- CART AUTO RENDER -->
+<script>
+window.addEventListener("load", () => {
+    renderCart();
+
+    // nút checkout cập nhật tổng tiền
+    const subtotal = getCartTotal();
+    document.getElementById("subtotalPrice").innerText = "$" + subtotal;
+    document.getElementById("grandTotal").innerText = "$" + subtotal;
+});
+</script>
+
+</body>
+</html>

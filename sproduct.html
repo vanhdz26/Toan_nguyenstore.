@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>STORE VANH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Header -->
+<section id="header">
+    <a href="index.html"><img src="img/logo.png" class="logo" alt=""></a>
+
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="shop.html">Shop</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+
+            <li id="userArea"></li>
+
+            <li id="lg-bag">
+                <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            </li>
+            <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+        </ul>
+    </div>
+
+    <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+    </div>
+</section>
+
+<!-- Product Details -->
+<section id="prodetails" class="section-p1">
+
+    <!-- Image -->
+    <div class="single-pro-image">
+        <img src="img/products/f1.jpg" width="100%" id="MainImg">
+
+        <div class="small-img-group">
+            <!-- JS sẽ render ảnh nhỏ -->
+        </div>
+    </div>
+
+    <!-- Info -->
+    <div class="single-pro-details">
+
+        <h6 id="breadcrumb">Home/T-Shirt</h6>
+        <h4 id="productName">Tên sản phẩm</h4>
+        <h2 id="productPrice">$0</h2>
+
+        <select>
+            <option>Chọn kích cỡ</option>
+            <option>XL</option>
+            <option>L</option>
+            <option>M</option>
+            <option>S</option>
+        </select>
+
+        <input type="number" id="productQty" value="1" min="1">
+
+        <!-- nút thêm giỏ -->
+        <button id="addToCartBtn" class="normal">Thêm Vào Giỏ Hàng</button>
+
+        <h4>Thông tin chi tiết</h4>
+        <span id="productDesc">Mô tả sản phẩm sẽ được load từ database.</span>
+    </div>
+
+</section>
+
+<!-- Newsletter -->
+<section id="newsletter" class="section-p1 section-m1">
+    <div class="newstext">
+        <h4>Đăng Ký Nhận Khuyến Mãi</h4>
+        <p>Nhận thông tin cập nhật mới nhất & <span>ưu đãi đặc biệt</span></p>
+    </div>
+    <div class="form">
+        <input type="text" placeholder="Your email address">
+        <button class="normal">Đăng Ký</button>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="section-p1">
+    <div class="col">
+        <img class="logo" src="img/logo.png">
+        <h4>Thông Tin Liên Hệ</h4>
+        <p><strong>Địa chỉ:</strong> VietName, HN, Ha Dong</p>
+        <p><strong>Số điện thoại:</strong> 0787146720</p>
+        <p><strong>Giờ:</strong> 08:00-18:00 - Mon - Sat</p>
+        <div class="follow">
+            <h4>Theo dõi chúng tôi</h4>
+            <div class="icon">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-pinterest-p"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <h4>Liên kết</h4>
+        <a href="#">Về chúng tôi</a>
+        <a href="#">Thông tin giao hàng</a>
+        <a href="#">Chính sách bảo mật</a>
+        <a href="#">Điều khoản & Điều kiện</a>
+        <a href="#">Liên hệ chúng tôi</a>
+    </div>
+
+    <div class="col">
+        <h4>Tài khoản</h4>
+        <a href="login-user.html">Đăng Nhập</a>
+        <a href="cart.html">Xem Giỏ Hàng</a>
+        <a href="#">Yêu thích</a>
+        <a href="order-history.html">Theo dõi đơn hàng</a>
+        <a href="#">Hỗ trợ</a>
+    </div>
+
+    <div class="col install">
+        <h4>Tải Ứng Dụng</h4>
+        <p>App Store hoặc Google Play</p>
+        <div class="row">
+            <img src="img/pay/app.jpg">
+            <img src="img/pay/play.jpg">
+        </div>
+        <p>Thanh toán an toàn</p>
+        <img src="img/pay/pay.png">
+
+        <div class="copyright">
+            <p>Since 2025, Toản Nguyễn</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JS CORE -->
+<script src="js/core-auth.js"></script>
+<script src="js/core-products.js"></script>
+<script src="js/core-cart.js"></script>
+<script src="js/core-orders.js"></script>
+<script src="js/core-ui.js"></script>
+
+<!-- Product Detail Script -->
+<script src="js/product-detail.js"></script>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+    if (typeof displayUserNavbar === "function") {
+        displayUserNavbar();
+    }
+});
+</script>
+
+</body>
+</html>
